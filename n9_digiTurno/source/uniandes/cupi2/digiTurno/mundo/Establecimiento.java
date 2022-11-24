@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * $Id: Establecimiento.java,v 1.3 2009/09/07 14:29:04 carl-veg Exp $
- * Universidad de los Andes (Bogotá - Colombia)
- * Departamento de Ingeniería de Sistemas y Computación 
+ * Universidad de los Andes (Bogotï¿½ - Colombia)
+ * Departamento de Ingenierï¿½a de Sistemas y Computaciï¿½n 
  * Licenciado bajo el esquema Academic Free License version 2.1 
  *
  * Proyecto Cupi2 (http://cupi2.uniandes.edu.co)
@@ -16,9 +16,9 @@ package uniandes.cupi2.digiTurno.mundo;
 /**
  * Clase que representa al establecimiento. <br>
  * <b>Invariante:</b> <br>
- * El número de cajas presentes en el establecimiento debe ser mayor o igual que cero. <br>
- * No hay cajas en el establecimiento con su número repetido. <br>
- * Las cajas están correctamente enlazadas en una lista doblemente encadenada.
+ * El nï¿½mero de cajas presentes en el establecimiento debe ser mayor o igual que cero. <br>
+ * No hay cajas en el establecimiento con su nï¿½mero repetido. <br>
+ * Las cajas estï¿½n correctamente enlazadas en una lista doblemente encadenada.
  */
 
 public class Establecimiento
@@ -33,7 +33,7 @@ public class Establecimiento
     private Caja primeraCaja;
 
     /**
-     * Número de cajas presentes en el establecimiento
+     * Nï¿½mero de cajas presentes en el establecimiento
      */
     private int numCajas;
 
@@ -42,7 +42,7 @@ public class Establecimiento
     // -----------------------------------------------------------------
 
     /**
-     * Crea un nuevo establecimiento. Se inicializa en null la referencia a la primera caja. El número de cajas del establecimiento es inicializado en cero.
+     * Crea un nuevo establecimiento. Se inicializa en null la referencia a la primera caja. El nï¿½mero de cajas del establecimiento es inicializado en cero.
      */
     public Establecimiento( )
     {
@@ -52,12 +52,12 @@ public class Establecimiento
     }
 
     // -----------------------------------------------------------------
-    // Métodos
+    // Mï¿½todos
     // -----------------------------------------------------------------
 
     /**
-     * Devuelve el número de cajas del establecimiento
-     * @return numCajas Número de cajas
+     * Devuelve el nï¿½mero de cajas del establecimiento
+     * @return numCajas Nï¿½mero de cajas
      */
     public int darNumeroCajas( )
     {
@@ -74,64 +74,67 @@ public class Establecimiento
     }
 
     /**
-     * Crea y agrega una caja al establecimiento dado su número. <br>
-     * <b> pre: </b> El número de caja que se recibe, es un identificador valido, es decir, no ha sido asignado a otra caja. <br>
-     * <b>post: </b>La caja ha sido agregada exitosamente a la lista de cajas. El número de cajas aumentó en uno.
-     * @param numCaja Número de la caja. numCaja > 0.
+     * Crea y agrega una caja al establecimiento dado su nï¿½mero. <br>
+     * <b> pre: </b> El nï¿½mero de caja que se recibe, es un identificador valido, es decir, no ha sido asignado a otra caja. <br>
+     * <b>post: </b>La caja ha sido agregada exitosamente a la lista de cajas. El nï¿½mero de cajas aumentï¿½ en uno.
+     * @param numCaja Nï¿½mero de la caja. numCaja > 0.
      */
     public void agregarCaja( int numCaja )
     {
-    	// TODO Completar el método según la documentación
+    	// TODO Completar el mï¿½todo segï¿½n la documentaciï¿½n
+
+        Caja nuevCaja=new Caja(numCaja);
+    
     }
 
     /**
-     * Busca y retorna la caja identificada con el número dado como parámetro.
-     * @param numCaja Número de la caja. numCaja > 0.
-     * @return actual Caja identificada con el número dado como parámetro. Null si no se encuentra
+     * Busca y retorna la caja identificada con el nï¿½mero dado como parï¿½metro.
+     * @param numCaja Nï¿½mero de la caja. numCaja > 0.
+     * @return actual Caja identificada con el nï¿½mero dado como parï¿½metro. Null si no se encuentra
      */
     public Caja buscarCaja( int numCaja )
     {
-    	// TODO Completar el método según la documentación
+    	// TODO Completar el mï¿½todo segï¿½n la documentaciï¿½n
     }
 
     /**
-     * Busca y retorna el cliente identificado con la cédula dada como parámetro.
-     * @param cedulaCliente Cédula del cliente a buscar. cedulaCliente > 0.
-     * @return cliente Cliente identificado con la cédula dada como parámetro. Null si el cliente buscado no existe.
+     * Busca y retorna el cliente identificado con la cï¿½dula dada como parï¿½metro.
+     * @param cedulaCliente Cï¿½dula del cliente a buscar. cedulaCliente > 0.
+     * @return cliente Cliente identificado con la cï¿½dula dada como parï¿½metro. Null si el cliente buscado no existe.
      * @throws NoHayCajasException No hay cajas registradas en el establecimiento.
      */
     public Cliente buscarCliente( int cedulaCliente ) throws NoHayCajasException
     {
-    	// TODO Completar el método según la documentación
+    	// TODO Completar el mï¿½todo segï¿½n la documentaciï¿½n
     }
 
     /**
      * Agrega un cliente a determinada caja del establecimiento dados sus atributos. <br>
      * <b>post: </b>El cliente ha sido agregado exitosamente al establecimiento en la caja dada.
-     * @param numCaja Número de la caja. numCaja > 0.
-     * @param categoriaCliente Categoría del cliente. categoriaCliente == Cliente.CLIENTE_MAYOR_DISCAPACITADO, Cliente.CLIENTE_VIP o Cliente.CLIENTE_NORMAL.
-     * @param cedulaCliente Cédula del cliente. cedulaCliente > 0.
-     * @param numProductosCliente Número de productos del cliente. numProductosCliente > 0.
+     * @param numCaja Nï¿½mero de la caja. numCaja > 0.
+     * @param categoriaCliente Categorï¿½a del cliente. categoriaCliente == Cliente.CLIENTE_MAYOR_DISCAPACITADO, Cliente.CLIENTE_VIP o Cliente.CLIENTE_NORMAL.
+     * @param cedulaCliente Cï¿½dula del cliente. cedulaCliente > 0.
+     * @param numProductosCliente Nï¿½mero de productos del cliente. numProductosCliente > 0.
      * @throws NoHayCajasException No hay cajas registradas en el establecimiento.
-     * @throws ClienteYaExisteException El cliente identificado con la cédula dada ya existe en alguna caja del establecimiento.
+     * @throws ClienteYaExisteException El cliente identificado con la cï¿½dula dada ya existe en alguna caja del establecimiento.
      * @throws CajaNoExisteException Si la caja con el identificador dado no existe.
      */
     public void agregarCliente( int numCaja, int categoriaCliente, int cedulaCliente, int numProductosCliente ) throws NoHayCajasException, ClienteYaExisteException, CajaNoExisteException
     {
-    	// TODO Completar el método según la documentación
+    	// TODO Completar el mï¿½todo segï¿½n la documentaciï¿½n
     }
 
     /**
-     * Elimina a un cliente del establecimiento dada su cédula. <br>
+     * Elimina a un cliente del establecimiento dada su cï¿½dula. <br>
      * <b>post: </b>El cliente ha sido eliminado exitosamente del establecimiento.
-     * @param cedulaCliente Cédula del cliente a eliminar. cedulaCliente > 0.
+     * @param cedulaCliente Cï¿½dula del cliente a eliminar. cedulaCliente > 0.
      * @throws NoHayCajasException No hay cajas registradas en el establecimiento.
-     * @throws ClienteNoExisteException El cliente identificado con la cédula dada no existe en ninguna caja del establecimiento.
-     * @throws PrimerClienteException El cliente identificado con la cédula dada no puede ser eliminado por ser el primer cliente de alguna de las cajas.
+     * @throws ClienteNoExisteException El cliente identificado con la cï¿½dula dada no existe en ninguna caja del establecimiento.
+     * @throws PrimerClienteException El cliente identificado con la cï¿½dula dada no puede ser eliminado por ser el primer cliente de alguna de las cajas.
      */
     public void eliminarCliente( int cedulaCliente ) throws NoHayCajasException, ClienteNoExisteException, PrimerClienteException
     {
-    	// TODO Completar el método según la documentación
+    	// TODO Completar el mï¿½todo segï¿½n la documentaciï¿½n
     }
 
     /**
@@ -141,7 +144,7 @@ public class Establecimiento
      */
     public void simularAvance( ) throws NoHayCajasException
     {
-    	// TODO Completar el método según la documentación
+    	// TODO Completar el mï¿½todo segï¿½n la documentaciï¿½n
     }
 
     // -----------------------------------------------------------------
@@ -149,32 +152,32 @@ public class Establecimiento
     // -----------------------------------------------------------------
 
     /**
-     * Método que verifica el invariante de la clase <br>
+     * Mï¿½todo que verifica el invariante de la clase <br>
      * <b>Invariante:</b> <br>
-     * El número de cajas presentes en el establecimiento debe ser mayor o igual que cero. <br>
-     * No hay cajas en el establecimiento con su número repetido. <br>
-     * Las cajas están correctamente enlazadas en una lista doblemente encadenada.
+     * El nï¿½mero de cajas presentes en el establecimiento debe ser mayor o igual que cero. <br>
+     * No hay cajas en el establecimiento con su nï¿½mero repetido. <br>
+     * Las cajas estï¿½n correctamente enlazadas en una lista doblemente encadenada.
      */
     private void verificarInvariante( )
     {
-        assert numCajas >= 0 : "El número de cajas en el establecimiento debe ser mayor o igual que cero";
-        assert verificarCajasNoRepetidas( ) == true : "Hay cajas con identificadores repetidos. El número de cada caja debe ser único.";
+        assert numCajas >= 0 : "El nï¿½mero de cajas en el establecimiento debe ser mayor o igual que cero";
+        assert verificarCajasNoRepetidas( ) == true : "Hay cajas con identificadores repetidos. El nï¿½mero de cada caja debe ser ï¿½nico.";
         assert verificarEnlacesCajas( ) == true : "Hay cajas mal enlazadas.";
 
     }
 
     /**
      * Verifica que no haya cajas con identificadores repetidos en el establecimiento.
-     * @return Se retornó true si no hay cajas con identificadores repetidos o false en caso contrario
+     * @return Se retornï¿½ true si no hay cajas con identificadores repetidos o false en caso contrario
      */
     private boolean verificarCajasNoRepetidas( )
     {
-    	// TODO Completar el método según la documentación
+    	// TODO Completar el mï¿½todo segï¿½n la documentaciï¿½n
     }
 
     /**
      * Verifica que las cajas se encuentren bien enlazadas
-     * @return Se retornó true si las cajas se encuentran bien enlazadas o false en caso contrario
+     * @return Se retornï¿½ true si las cajas se encuentran bien enlazadas o false en caso contrario
      */
     private boolean verificarEnlacesCajas( )
     {
@@ -200,11 +203,11 @@ public class Establecimiento
     }
 
     // -----------------------------------------------------------------
-    // Puntos de Extensión
+    // Puntos de Extensiï¿½n
     // -----------------------------------------------------------------
 
     /**
-     * Método para la extensión 1
+     * Mï¿½todo para la extensiï¿½n 1
      * @return respuesta1
      */
     public String metodo1( )
@@ -213,7 +216,7 @@ public class Establecimiento
     }
 
     /**
-     * Método para la extensión2
+     * Mï¿½todo para la extensiï¿½n2
      * @return respuesta2
      */
     public String metodo2( )

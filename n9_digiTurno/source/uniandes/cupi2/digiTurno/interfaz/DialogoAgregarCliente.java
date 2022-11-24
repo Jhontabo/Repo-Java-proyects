@@ -1,8 +1,8 @@
 /**
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * $Id: DialogoAgregarCliente.java,v 1.2 2009/09/07 13:31:11 carl-veg Exp $
- * Universidad de los Andes (Bogotá - Colombia)
- * Departamento de Ingeniería de Sistemas y Computación 
+ * Universidad de los Andes (Bogotï¿½ - Colombia)
+ * Departamento de Ingenierï¿½a de Sistemas y Computaciï¿½n 
  * Licenciado bajo el esquema Academic Free License version 2.1 
  *
  * Proyecto Cupi2 (http://cupi2.uniandes.edu.co)
@@ -31,7 +31,7 @@ import javax.swing.JTextField;
 import uniandes.cupi2.digiTurno.mundo.Cliente;
 
 /**
- * Es el diálogo usado para agregar un cliente al establecimiento
+ * Es el diï¿½logo usado para agregar un cliente al establecimiento
  */
 public class DialogoAgregarCliente extends JDialog implements ActionListener
 {
@@ -40,17 +40,17 @@ public class DialogoAgregarCliente extends JDialog implements ActionListener
     // -----------------------------------------------
 
     /**
-     * Constante para la serialización
+     * Constante para la serializaciï¿½n
      */
     private static final long serialVersionUID = 1L;
 
     /**
-     * Comando para el botón Aceptar
+     * Comando para el botï¿½n Aceptar
      */
     private static final String ACEPTAR = "Aceptar";
 
     /**
-     * Comando para el botón Cancelar
+     * Comando para el botï¿½n Cancelar
      */
     private static final String CANCELAR = "Cancelar";
 
@@ -73,7 +73,7 @@ public class DialogoAgregarCliente extends JDialog implements ActionListener
     private JLabel lblCaja;
 
     /**
-     * Etiqueta cédula del cliente
+     * Etiqueta cï¿½dula del cliente
      */
     private JLabel lblCedula;
 
@@ -88,7 +88,7 @@ public class DialogoAgregarCliente extends JDialog implements ActionListener
     private JTextField txtCaja;
 
     /**
-     * Campo de texto cédula del cliente
+     * Campo de texto cï¿½dula del cliente
      */
     private JTextField txtCedula;
 
@@ -98,12 +98,12 @@ public class DialogoAgregarCliente extends JDialog implements ActionListener
     private JTextField txtCantidadProductos;
 
     /**
-     * Botón Aceptar
+     * Botï¿½n Aceptar
      */
     private JButton btnAceptar;
 
     /**
-     * Botón Cancelar
+     * Botï¿½n Cancelar
      */
     private JButton btnCancelar;
 
@@ -132,25 +132,26 @@ public class DialogoAgregarCliente extends JDialog implements ActionListener
     // --------------------------------------------------------
 
     /**
-     * Inicializa el diálogo para agregar un cliente al establecimiento
+     * Inicializa el diï¿½logo para agregar un cliente al establecimiento
      * @param ventana Referencia al panel de extensiones del establecimiento
      */
     public DialogoAgregarCliente( PanelExtension ventana )
     {
-    	// TODO Complete el método según la documentación
+    	// TODO Complete el mï¿½todo segï¿½n la documentaciï¿½n
+        principal = ventana;
     }
 
     // --------------------------------------------------------
-    // Métodos
+    // Mï¿½todos
     // --------------------------------------------------------
 
     /**
-     * Método que se ejecuta cuando se hace click en el botón ACEPTAR o CANCELAR Despliega un mensaje de error en caso de que alguno de los valores ingresados sea inválido
-     * @param e Acción que generó el evento
+     * Mï¿½todo que se ejecuta cuando se hace click en el botï¿½n ACEPTAR o CANCELAR Despliega un mensaje de error en caso de que alguno de los valores ingresados sea invï¿½lido
+     * @param e Acciï¿½n que generï¿½ el evento
      */
     public void actionPerformed( ActionEvent e )
     {
-    	// TODO Complete el método según la documentación
+    	// TODO Complete el mï¿½todo segï¿½n la documentaciï¿½n
        
     }
 }
