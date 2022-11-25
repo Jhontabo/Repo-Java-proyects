@@ -13,6 +13,7 @@
 
 package uniandes.cupi2.digiTurno.interfaz;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -139,6 +140,76 @@ public class DialogoAgregarCliente extends JDialog implements ActionListener
     {
     	// TODO Complete el m�todo seg�n la documentaci�n
         principal = ventana;
+        setTitle( "Agregar Cliente" );
+        setLayout( new GridBagLayout( ) );
+        setPreferredSize( new Dimension( 298, 307 ) );
+
+        grupo = new ButtonGroup( );
+
+        // Construir e inicializar las etiquetas
+        GridBagConstraints gbc = new GridBagConstraints( 0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets( 5, 5, 5, 5 ), 0, 0 );
+
+        lblCedula = new JLabel( "Cedula: " );
+        add( lblCedula, gbc );
+
+        gbc.gridx = 1;
+        gbc.gridwidth = 2;
+        txtCedula = new JTextField( );
+        add( txtCedula, gbc );
+        
+        lblCaja = new JLabel( "Caja: " );
+        add( lblCaja, gbc );
+
+        gbc.gridx = 1;
+        gbc.gridwidth = 2;
+        txtCaja = new JTextField( );
+        add( txtCaja, gbc );
+        
+        lblCantidadProductos = new JLabel( "Cantidad de productos: " );
+        add( lblCantidadProductos, gbc );
+
+        gbc.gridx = 1;
+        gbc.gridwidth = 2;
+        txtCantidadProductos = new JTextField( );
+        add( txtCantidadProductos, gbc );
+
+        gbc.gridy = 1;
+        gbc.gridx = 0;
+        JLabel lblTransaccion = new JLabel( "Tipo de Cliente" );
+        add( lblTransaccion, gbc );
+
+        gbc.gridy = 2;
+        grupo.add( radioMayorDiscapacitado );
+        add( radioMayorDiscapacitado, gbc );
+
+        gbc.gridy = 3;
+        grupo.add( radioVIP );
+        add( radioVIP, gbc );
+
+        gbc.gridy = 4;
+        grupo.add( radioNormal );
+        add( radioNormal, gbc );
+
+        // Construir e inicializar los botones
+        JPanel panelBotones = new JPanel( );
+
+        btnAceptar = new JButton( "Aceptar" );
+        btnAceptar.setActionCommand( ACEPTAR );
+        btnAceptar.addActionListener( this );
+        panelBotones.add( btnAceptar );
+
+        btnCancelar = new JButton( "Cancelar" );
+        btnCancelar.setActionCommand( CANCELAR );
+        btnCancelar.addActionListener( this );
+        panelBotones.add( btnCancelar );
+
+        gbc.gridy = 6;
+        gbc.gridwidth = 3;
+        add( panelBotones, gbc );
+
+        pack( );
+        setLocationRelativeTo( null );
+        setDefaultCloseOperation( DISPOSE_ON_CLOSE );
     }
 
     // --------------------------------------------------------
@@ -151,7 +222,37 @@ public class DialogoAgregarCliente extends JDialog implements ActionListener
      */
     public void actionPerformed( ActionEvent e )
     {
-    	// TODO Complete el m�todo seg�n la documentaci�n
+    	 if( e.getActionCommand( ).equals( CANCELAR ) )
+         {
+             setVisible( false );
+             dispose( );
+         }
+         else if( e.getActionCommand( ).equals( ACEPTAR ) )
+         {
+             try
+             {
+
+                 int categoria;
+                 if( radioMayorDiscapacitado.isSelected( ) )
+                	 categoria = Cliente.CLIENTE_MAYOR_DISCAPACITADO;
+                 else if( radioVIP.isSelected( ) )
+                	 categoria = Cliente.CLIENTE_VIP;
+                 else
+                     categoria = Cliente.CLIENTE_NORMAL;
+
+                 int cedula = Integer.valueOf( txtCedula.getText( ) ).intValue( );
+                 int caja = Integer.valueOf( txtCaja.getText( ) ).intValue( );
+                 int numProductos = Integer.valueOf( txtCantidadProductos.getText( ) ).intValue( );
+                 principal.agregarCliente(caja, categoria, cedula, numProductos);;
+                 setVisible( false );
+                 dispose( );
+             }
+             catch( NumberFormatException e1 )
+             {
+                 JOptionPane.showMessageDialog( this, "Error en el formato de la identificaci�n", "Agregar Cliente", JOptionPane.ERROR_MESSAGE );
+             }
+         }
+
        
     }
 }

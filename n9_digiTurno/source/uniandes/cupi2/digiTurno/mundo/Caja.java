@@ -13,6 +13,7 @@
 
 package uniandes.cupi2.digiTurno.mundo;
 
+
 /**
  * Clase que representa una caja del establecimiento <b>Invariante:</b> <br>
  * El n�mero de la caja debe ser mayor que cero. El n�mero de clientes atendidos es mayor o igual que cero. No hay clientes con su c�dula repetida.
@@ -26,16 +27,12 @@ public class Caja
     /**
      * Siguiente caja en la lista respecto de la caja actual
      */
-	// TODO modele el atributo que representa la siguiente caja
-
-    private Caja siguiente;
+	private Caja siguiente;
 
     /**
      * Anterior caja en la lista respecto de la caja actual
      */
-	// TODO modele el atributo que representa la caja anterior
-
-    private Caja anterior;
+	private Caja anterior;
 
     /**
      * Primer cliente de la caja
@@ -57,21 +54,17 @@ public class Caja
     // -----------------------------------------------------------------
 
     /**
-     * Crea una nueva caja dado su identificador. Se inicializa en null la referencia al primer cliente y a la siguiente y anterior caja.
-     *  El n�mero de clientes atendidos es
+     * Crea una nueva caja dado su identificador. Se inicializa en null la referencia al primer cliente y a la siguiente y anterior caja. El n�mero de clientes atendidos es
      * inicializado en cero.
      * @param numCajaP Numero de la caja. numCajaP > 0.
      */
     public Caja( int numCajaP )
-    
     {
-    	// TODO Complete el m�todo seg�n la documentaci�n
-        numCaja=numCajaP;
-        primerCliente=null;
-        siguiente=null;
-        anterior=null;
-        numClientesAtendidos=0;
-
+    	primerCliente=null;
+    	siguiente=null;
+    	anterior=null;
+    	numClientesAtendidos = 0;
+    	numCaja=numCajaP;
        
     }
 
@@ -157,6 +150,51 @@ public class Caja
         // agregarClienteMayorODiscapacitado
         // agregarClienteVIP
         // agregarClienteNormal
+    	
+
+        Cliente actual = primerCliente;
+
+        while( actual != null )
+        {
+            if(actual.darCategoria()==1 ) {
+            	Cliente nuevoCliente = new Cliente(categoriaCliente, cedulaCliente, numProductos );
+            	if( primerCliente==null )
+                {
+            		agregarClienteMayorODiscapacitado(nuevoCliente);
+                }
+                else
+                {
+                	nuevoCliente.cambiarSiguiente( actual );
+                	agregarClienteMayorODiscapacitado(nuevoCliente);
+                }     
+            }
+            else if (actual.darCategoria()==2) {
+            	Cliente nuevoCliente = new Cliente( categoriaCliente, cedulaCliente, numProductos);
+            	if( primerCliente==null )
+                {
+            		agregarClienteVIP(nuevoCliente);
+                }
+                else
+                {
+                	nuevoCliente.cambiarSiguiente( actual);
+                	agregarClienteVIP(nuevoCliente);;
+                }  
+			} 
+            else if (actual.darCategoria()==3) {
+            	Cliente nuevoCliente = new Cliente(categoriaCliente, cedulaCliente, numProductos );
+            	if( primerCliente==null )
+                {
+            		agregarClienteNormal(nuevoCliente);
+                }
+                else
+                {
+                	nuevoCliente.cambiarSiguiente( actual );
+                	agregarClienteNormal(nuevoCliente);
+                }  
+				
+			}
+            actual = actual.darSiguiente( );
+        }
     }
 
     /**
@@ -170,6 +208,20 @@ public class Caja
     	// TODO Completar seg�n la documentaci�n
         // Ayuda: Use el m�todo localizarUltimoClienteMayorODiscapacitado, 
     	// y agregue el cliente despu�s del obtenido por dicho m�todo 
+    	Cliente actual = primerCliente;
+
+        if( actual != null && actual.darCategoria()==1)
+        {
+        	actual = nCliente;
+        }
+        else
+        {
+            Cliente c = localizarUltimoClienteMayor();
+        	c.darSiguiente();
+            c=nCliente;
+
+        }
+    	
     }
 
     /**
@@ -183,6 +235,19 @@ public class Caja
        	// TODO Completar seg�n la documentaci�n
         // Ayuda: Use el m�todo localizarUltimoClienteVIP, 
     	// y agregue el cliente despu�s del obtenido por dicho m�todo 
+    	Cliente actual = primerCliente;
+
+        if( actual != null && actual.darCategoria()==2)
+        {
+        	actual = nCliente;
+        }
+        else
+        {
+            Cliente c = localizarUltimoClienteVIP();
+        	c.darSiguiente();
+            c=nCliente;
+
+        }
     }
 
     /**
@@ -196,6 +261,19 @@ public class Caja
        	// TODO Completar seg�n la documentaci�n
         // Ayuda: Use el m�todo localizarUltimoClienteNormal, 
     	// y agregue el cliente despu�s del obtenido por dicho m�todo 
+    	Cliente actual = primerCliente;
+
+        if( actual != null && actual.darCategoria()==3)
+        {
+        	actual = nCliente;
+        }
+        else
+        {
+            Cliente c = localizarUltimoClienteNormal();
+        	c.darSiguiente();
+            c=nCliente;
+
+        }
     }
 
     /**
@@ -206,7 +284,20 @@ public class Caja
      */
     private Cliente localizarUltimoClienteMayor( )
     {
-    	// TODO Completar seg�n la documentaci�n
+    	Cliente actual = primerCliente;
+
+        if( actual != null && actual.darCategoria()==1)
+        {
+            while( actual.darSiguiente( ) != null )
+            {
+                actual = actual.darSiguiente( );
+            }
+        }
+        else {
+        	actual = null;
+		}
+        
+        return actual;
     }
 
     /**
@@ -218,7 +309,27 @@ public class Caja
      */
     private Cliente localizarUltimoClienteVIP( )
     {
-    	//   TODO Completar seg�n la documentaci�n
+    	Cliente actual = primerCliente;
+
+        if( actual != null && actual.darCategoria()==2)
+        {
+            while( actual.darSiguiente( ) != null )
+            {
+                actual = actual.darSiguiente( );
+            }
+        }
+        else if( actual != null && actual.darCategoria()==1)
+        {
+            while( actual.darSiguiente( ) != null )
+            {
+                actual = actual.darSiguiente( );
+            }
+        }
+        else {
+        	actual = null;
+		}
+        
+        return actual;
     }
 
     /**
@@ -231,7 +342,34 @@ public class Caja
      */
     private Cliente localizarUltimoClienteNormal( )
     {
-    	// TODO Completar seg�n la documentaci�n
+    	Cliente actual = primerCliente;
+
+        if( actual != null && actual.darCategoria()==3)
+        {
+            while( actual.darSiguiente( ) != null )
+            {
+                actual = actual.darSiguiente( );
+            }
+        }
+        else if( actual != null && actual.darCategoria()==2)
+        {
+            while( actual.darSiguiente( ) != null )
+            {
+                actual = actual.darSiguiente( );
+            }
+        }
+        else if( actual != null && actual.darCategoria()==1)
+        {
+            while( actual.darSiguiente( ) != null )
+            {
+                actual = actual.darSiguiente( );
+            }
+        }
+        else {
+        	actual = null;
+		}
+        
+        return actual;
     }
 
     /**
@@ -241,7 +379,16 @@ public class Caja
      */
     public Cliente buscarCliente( int cedulaCliente )
     {
-    	//   TODO Completar seg�n la documentaci�n
+        {
+            Cliente actual = primerCliente;
+            while( actual != null )
+            {
+                if( actual.darCedula( ) == cedulaCliente )
+                    return actual;
+                actual = actual.darSiguiente( );
+            }
+            return null;
+        }
     }
 
     /**
@@ -251,7 +398,19 @@ public class Caja
      */
     public void eliminarCliente( int cedulaCliente ) throws PrimerClienteException
     {
-    	//  TODO Completar seg�n la documentaci�n
+        Cliente actual=primerCliente;
+        if( actual == null )
+        {
+            throw new PrimerClienteException(" El cliente identificado con la cdula dada es el primer cliente de la fila");
+        }
+        while( actual != null )
+        {
+            if( actual.darCedula( ) == cedulaCliente )
+            {
+                actual=null;
+            }
+            actual = actual.darSiguiente( );
+        }
     }
 
     /**
@@ -260,7 +419,14 @@ public class Caja
      */
     public int calcularNumeroProductos( )
     {
-       // 	TODO Completar seg�n la documentaci�n
+        int numProductos = 0;
+        Cliente actual = primerCliente;
+        while( actual != null )
+        {
+        	numProductos += actual.darNumeroProductos();
+            actual = actual.darSiguiente( );
+        }
+        return numProductos;
     }
 
     /**

@@ -81,10 +81,29 @@ public class Establecimiento
      */
     public void agregarCaja( int numCaja )
     {
-    	// TODO Completar el m�todo seg�n la documentaci�n
+        Caja caja = new Caja( numCaja++);
+        if( primeraCaja == null )
+        {
+            primeraCaja = caja;
+        }
+        else
+        {
+            Caja ultima = null;
+            // Variable que tendr� una caja
+            Caja actual = primeraCaja;
 
-        Caja nuevCaja=new Caja(numCaja);
-    
+            while( actual != null )
+            {
+                // Se busca cual es la �ltima caja
+                if( actual.darSiguiente( ) != null )
+                    ultima = actual.darSiguiente( );
+                else
+                    ultima = actual;
+                actual = actual.darSiguiente( );
+            }
+            // Se agrega la caja de �ltima
+            ultima.cambiarSiguiente( caja );
+        }
     }
 
     /**
@@ -94,7 +113,16 @@ public class Establecimiento
      */
     public Caja buscarCaja( int numCaja )
     {
-    	// TODO Completar el m�todo seg�n la documentaci�n
+        Caja actual = primeraCaja;
+        while( actual != null )
+        {
+            if( actual.darNumCaja( ) == numCaja )
+            {
+                return actual;
+            }
+            actual = actual.darSiguiente( );
+        }
+        return null;
     }
 
     /**
@@ -105,7 +133,22 @@ public class Establecimiento
      */
     public Cliente buscarCliente( int cedulaCliente ) throws NoHayCajasException
     {
-    	// TODO Completar el m�todo seg�n la documentaci�n
+        if( primeraCaja == null )
+        {
+            throw new NoHayCajasException( "No hay cajas registradas en el establecimiento" );
+        }
+        
+        Caja actual = primeraCaja;
+        while( actual != null )
+        {
+            Cliente cliente = actual.buscarCliente( cedulaCliente );
+            if( cliente != null )
+            {
+                return cliente;
+            }
+            actual = actual.darSiguiente( );
+        }
+        return null;
     }
 
     /**
@@ -115,13 +158,27 @@ public class Establecimiento
      * @param categoriaCliente Categor�a del cliente. categoriaCliente == Cliente.CLIENTE_MAYOR_DISCAPACITADO, Cliente.CLIENTE_VIP o Cliente.CLIENTE_NORMAL.
      * @param cedulaCliente C�dula del cliente. cedulaCliente > 0.
      * @param numProductosCliente N�mero de productos del cliente. numProductosCliente > 0.
-     * @throws NoHayCajasException No hay cajas registradas en el establecimiento.
-     * @throws ClienteYaExisteException El cliente identificado con la c�dula dada ya existe en alguna caja del establecimiento.
-     * @throws CajaNoExisteException Si la caja con el identificador dado no existe.
      */
-    public void agregarCliente( int numCaja, int categoriaCliente, int cedulaCliente, int numProductosCliente ) throws NoHayCajasException, ClienteYaExisteException, CajaNoExisteException
+    public void agregarCliente( int numCaja, int categoriaCliente, int cedulaCliente, int numProductosCliente )
     {
-    	// TODO Completar el m�todo seg�n la documentaci�n
+
+        Caja cajaM = null;
+
+        Caja actual = primeraCaja;
+        while( actual != null )
+        {
+            if( actual.darNumCaja()==numCaja  )
+            {
+                cajaM = actual;
+            }
+            actual = actual.darSiguiente( );
+        }
+
+        if( cajaM != null )
+        {
+            cajaM.agregarCliente(categoriaCliente, cedulaCliente, numProductosCliente);
+        }
+           
     }
 
     /**
@@ -134,7 +191,23 @@ public class Establecimiento
      */
     public void eliminarCliente( int cedulaCliente ) throws NoHayCajasException, ClienteNoExisteException, PrimerClienteException
     {
-    	// TODO Completar el m�todo seg�n la documentaci�n
+    	Cliente cli = buscarCliente(cedulaCliente);
+        Caja caja = primeraCaja;
+        
+       if(buscarCliente(cedulaCliente)==null) 
+       {
+    	   throw new ClienteNoExisteException( "El cliente identificado con la c�dula dada no existe en ninguna caja del establecimiento." );
+       }
+       
+       if( caja != null )
+       {
+           caja.eliminarCliente(cedulaCliente);;
+       }     
+       else 
+       {
+    	   throw new ClienteNoExisteException("No hay cajas registradas en el establecimiento.");
+       }
+
     }
 
     /**
@@ -145,6 +218,11 @@ public class Establecimiento
     public void simularAvance( ) throws NoHayCajasException
     {
     	// TODO Completar el m�todo seg�n la documentaci�n
+        if( primeraCaja == null )
+        {
+            throw new NoHayCajasException( "No hay cajas registradas en el establecimiento" );
+        }
+        
     }
 
     // -----------------------------------------------------------------
@@ -160,8 +238,8 @@ public class Establecimiento
      */
     private void verificarInvariante( )
     {
-        assert numCajas >= 0 : "El n�mero de cajas en el establecimiento debe ser mayor o igual que cero";
-        assert verificarCajasNoRepetidas( ) == true : "Hay cajas con identificadores repetidos. El n�mero de cada caja debe ser �nico.";
+        assert numCajas >= 0 : "El numero de cajas en el establecimiento debe ser mayor o igual que cero";
+        assert verificarCajasNoRepetidas( ) == true : "Hay cajas con identificadores repetidos. El numero de cada caja debe ser unico.";
         assert verificarEnlacesCajas( ) == true : "Hay cajas mal enlazadas.";
 
     }
@@ -172,7 +250,27 @@ public class Establecimiento
      */
     private boolean verificarCajasNoRepetidas( )
     {
-    	// TODO Completar el m�todo seg�n la documentaci�n
+    	boolean noRepetidos = true;
+
+        if( primeraCaja != null )
+        {
+            Caja cajaTemp = primeraCaja;
+            Caja cajaTemp2 = cajaTemp.darSiguiente( );
+
+            while( cajaTemp2 != null && noRepetidos )
+            {
+                if( cajaTemp.darNumCaja() == cajaTemp2.darNumCaja() )
+                {
+                    noRepetidos = false;
+                }
+                else
+                {
+                    cajaTemp = cajaTemp2;
+                    cajaTemp2 = cajaTemp.darSiguiente( );
+                }
+            }
+        }
+        return noRepetidos;
     }
 
     /**

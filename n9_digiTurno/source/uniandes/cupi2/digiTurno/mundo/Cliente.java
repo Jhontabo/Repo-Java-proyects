@@ -45,10 +45,8 @@ public class Cliente
     /**
      * Siguiente cliente en la fila del establecimiento respecto del cliente actual
      */
-    //TODO Declare el atributo que modela el siguiente cliente
-
     private Cliente siguiente;
-
+    
     /**
      * C�dula del cliente
      */
@@ -76,15 +74,11 @@ public class Cliente
      */
     public Cliente( int categoriaP, int cedulaP, int numProductosP )
     {
-    	// TODO Completar seg�n la documentaci�n
-        siguiente=null;
-        categoria=categoriaP;
-        cedula=cedulaP;
-        numProductos=numProductosP;
+    	categoria = categoriaP;
+    	cedula = cedulaP;
+    	numProductos = numProductosP;
+    	siguiente = null;
         verificarInvariante();
-
-
-       
     }
 
     // -----------------------------------------------------------------
@@ -124,7 +118,6 @@ public class Cliente
      */
     public Cliente darSiguiente( )
     {
-    	// TODO Completar seg�n la documentaci�n
         return siguiente;
     }
 
@@ -134,9 +127,7 @@ public class Cliente
      */
     public void cambiarSiguiente( Cliente nSiguiente )
     {
-    	// TODO Completar seg�n la documentaci�n
-        siguiente=nSiguiente;
-
+    	siguiente=nSiguiente;
     }
 
     // -----------------------------------------------------------------
@@ -152,10 +143,8 @@ public class Cliente
      */
     private void verificarInvariante( )
     {
-    	// TODO Completar seg�n la documentaci�n
-
-        assert cedula > 0 : "El n�mero de la caja debe ser mayor que cero.";
-        assert numProductos>= 0 : "El n�mero de clientes atendidos debe ser mayor o igual que cero.";
-        assert categoria == CLIENTE_MAYOR_DISCAPACITADO || categoria ==CLIENTE_VIP || categoria ==CLIENTE_NORMAL: "Categoria";
+    	assert cedula > 0 : "Cedula incorrecta";
+    	assert numProductos > 0 : "ffd";
+    	assert categoria == CLIENTE_MAYOR_DISCAPACITADO || categoria ==CLIENTE_VIP || categoria ==CLIENTE_NORMAL: "sdsd";
     }
 }
